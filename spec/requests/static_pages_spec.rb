@@ -10,7 +10,7 @@ describe "StaticPages" do
 
     it "should have the title 'Home'" do
       visit '/static_pages/home'
-      page.should_not have_selector('title',
+      page.should have_selector('title',
                         :text => "Ruby on Rails Tutorial Sample App | Home")
     end
   end
@@ -46,13 +46,13 @@ describe "StaticPages" do
 
     it "should have the h1 'Contact'" do
       visit '/static_pages/contact'
-      page.should have_selector('h1', :text => 'Contact')
+      page.should have_selector('h1', text: 'Contact')
     end
 
     it "should have the title 'Contact'" do
       visit '/static_pages/contact'
       page.should have_selector('title',
-                    :text => "Ruby on Rails Tutorial Sample App | Contact")
+                    text: "Ruby on Rails Tutorial Sample App | Contact")
     end
   end
 
