@@ -51,11 +51,33 @@ describe "Authentication" do
           before {visit users_path}
           it { should have_selector('title', text: 'Sign in')}
         end   
+
+        describe "visit the following page" do
+          before {visit following_user_path(user)}
+          it {should have_selector('title', text: 'Sign in')}
+        end
+
+        describe "visit the followers page" do
+          before {visit followers_user_path(user)}
+          it {should have_selector('title', text: 'Sign in')}
+        end
       end
 
       describe "submitting to the update action" do
         before {put user_path(user)}
         specify {response.should redirect_to(signin_path)}
+      end
+
+      describe "in the relationship controller" do
+        describe "submitting to the create action" do
+          before { post relationships_path }
+          specify { response.should redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete relationship_path(1) }
+          specify { response.should redirect_to(signin_path) }          
+        end
       end
     end 
 
